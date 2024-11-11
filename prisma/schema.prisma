@@ -37,20 +37,21 @@ model User {
 
 //いいねのテーブル
 model Like {
-  id          String @id @default(now())
+  id          String @id @default(uuid())
 
-  created_at DataTime @default(now())
-  updated_at DataTime @updatedAt
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
 
   //外部キー
-  user_id
-  brand_id
+  user_id  String
+  brand_id String
 
   //relation
   user User @relation(fields: [user_id], references: [id])
   brand Brand @relation(fields: [user_id], references: [id])
 
-  @unique([user_id, brand_id]) //同じユーザーが同じブランドにいいねを複数回押せないようにする
+  //同じユーザーが同じブランドにいいねを複数回押せないようにする
+  @unique([user_id, brand_id]) 
 }
 
 model Tags {
@@ -63,7 +64,7 @@ model Tags {
 }
 
 //ブランドにタグ用
-model Brand_Tag {
+model BrandTag {
   brand_id  String
   tag_id    String
 
@@ -71,5 +72,6 @@ model Brand_Tag {
   brand Brand @relation(fields: [brand_id], references: [id])
   tag Tag @relation(fields: [tag_id], references: [id])
 
-  @unique([brand_id, tag_id]) //同じブランドに同じタグを複数回登録できないようにする
+  //同じブランドに同じタグを複数回登録できないようにする
+  @unique([brand_id, tag_id])
 }
