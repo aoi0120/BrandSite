@@ -1,4 +1,7 @@
 import { PrismaClient } from '@prisma/client';
+import app from './app';
+
+const PORT = process.env.PORT || 5444;
 
 const prisma = new PrismaClient();
 
@@ -19,6 +22,21 @@ const main = async () => {
     const allUsers = await prisma.user.findMany();
     console.dir(allUsers, { depth: null });
 
+}
+
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});
+
+//データベース接続関数
+export const connect = async () => {
+    try {
+        await prisma.$connect();
+    }
+    catch (e) {
+        console.error(e);
+        return Error("Error connecting to database");
+    }
 }
 
 main()
