@@ -4,10 +4,12 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "concurrently \"vite\" \"node --loader ts-node/esm src/db/index.ts\"",
+    "dev:server": "node --loader ts-node/esm src/db/index.ts",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start": "node --loader ts-node/esm src/db/index.ts"
   },
   "prisma": {
     "seed": "node --loader ts-node/esm prisma/seed.ts"
@@ -19,6 +21,7 @@
     "@mui/material": "^6.1.6",
     "@prisma/client": "^5.22.0",
     "@types/express": "^5.0.0",
+    "concurrently": "^9.1.0",
     "express": "^4.21.1",
     "node": "^22.11.0",
     "react": "^18.3.1",
