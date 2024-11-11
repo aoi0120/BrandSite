@@ -27,11 +27,6 @@ const main = async () => {
         console.log({ alice, bob });
     };
 
-    const glove = await prisma.brand.findFirst({ where: { name: 'Globe' } })
-    const alden = await prisma.brand.findFirst({ where: { name: 'Alden' } })
-    const gucci = await prisma.brand.findFirst({ where: { name: 'Gucci' } })
-    const Tiffany = await prisma.brand.findFirst({ where: { name: 'Tiffany' } })
-
     const brandDates = [
         { name: "Globe trotter",    tag: "globe", image: "./../public/globe.webp",                      name_hira: "グローブトロッター" },
         { name: "Alden",            tag: "globe", image: "./../public/169115453.webp",                  name_hira: "オールデン" },

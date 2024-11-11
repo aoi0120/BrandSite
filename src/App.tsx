@@ -2,19 +2,6 @@ import { Header } from './components/header'
 import { Footer } from './Footer'
 import { useBrands } from './hook/useBrands'
 
-// const [brandData, setBrandData] = useState([])
-
-// const fetchBrandDaters = async () => {
-//   try {
-//     const response = await axios.get('https://localhost:3100/brands');
-//     setBrandData(response.data);
-//   } catch (error) {
-//     console.error(error);
-//   }
-// };
-
-
-
 export const App = () => {
   const { brandDates } = useBrands();
   return (
