@@ -13,12 +13,51 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Post {
+//ブランドテーブル
+model Brand {
   id          String @id @default(uuid())
   title       String
-  description String
-  phot_url    String
-  created_at  DataTime @default(now())
-  updated_at  DataTime @updatedAt
+  description String?
+  photo_url   String?
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+  likes Like[]
+  tags BrandTag[]
 }
 
+//ユーザーテーブル
+model User {
+  id          String @id @default(uuid())
+  name        String
+  email       String
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+  likes Like[]
+}
+
+//いいねのテーブル
+model Like {
+  id          String @id @default(now())
+
+  created_at DataTime @default(now())
+  updated_at DataTime @updatedAt
+
+  //外部キー
+  user_id
+  brand_id
+
+  //relation
+  user User @relation(fields: [user_id], references: [id])
+  brand Brand @relation(fields: [user_id], references: [id])
+}
+
+model Tags {
+  brand_id  
+  name
+}
+
+//ブランドにタグ用
+model Brand_Tag {
+  brand_id
+  tag_id
+}
