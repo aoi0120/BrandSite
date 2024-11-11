@@ -16,7 +16,8 @@ datasource db {
 //ブランドテーブル
 model Brand {
   id          String     @id @default(uuid())
-  title       String
+  name        String
+  name_hira   String
   description String?
   photo_url   String?
   created_at  DateTime   @default(now())
