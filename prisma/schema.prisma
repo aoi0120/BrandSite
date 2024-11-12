@@ -18,7 +18,7 @@ model Brand {
   id          String     @id @default(uuid())
   name        String
   name_hira   String
-  url         String?
+  url         String
   description String?
   photo_url   String?
   created_at  DateTime   @default(now())
