@@ -18,6 +18,7 @@ export const useBrands = () => {
       photo_url: string;
       name: string;
       name_hira: string;
+      url : string;
     }
   
     const [brandDates, setBrandDates] = useState<Brand[]>([]);
