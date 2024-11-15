@@ -43,7 +43,7 @@ const main = async () => {
                     name: brandDate.name,
                     photo_url: brandDate.image,
                     name_hira: brandDate.name_hira,
-                    url: brandDate.url
+                    url: brandDate.url,
                 }
             })
         }
