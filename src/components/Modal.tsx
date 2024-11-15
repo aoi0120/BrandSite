@@ -22,8 +22,10 @@ export const Modal: React.FC<ModalProps> = ({ showFlag,setShowModal,selectedBran
             {showFlag ? ( //ture
                 <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-slate-800 bg-opacity-40">
                     <div className="bg-white p-10 rounded-md">
-                        <h2 className='text-lg'>{brand.name}</h2>
-                        <img src={brand.photo_url} alt="" />
+                        <h2 className='text-lg fixed'>{brand.name}</h2>
+                        <div>
+                            
+                        </div>
                         <button onClick={closeModal}>Close</button>
                     </div>
                 </div>
