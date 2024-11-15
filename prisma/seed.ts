@@ -1,5 +1,4 @@
 import { PrismaClient } from '@prisma/client';
-import { url } from 'inspector';
 
 const prisma = new PrismaClient();
 
@@ -31,7 +30,7 @@ const main = async () => {
     const brandDates = [
         { name: "Globe trotter",    url:"https://jp.globe-trotter.com/",    image: "./../public/globe.webp",                      name_hira: "グローブトロッター" },
         { name: "Alden",            url:"https://www.aldenshop.com/",       image: "./../public/169115453.webp",                  name_hira: "オールデン" },
-        { name: "Gucci",            url:"https://www.gucci.com/jp/ja/",     image: "./../public/1111.webp",                       name_hira: "グッチ" },
+        { name: "Gucci",            url:"https://www.gucci.com/jp/ja/",     image: "./../public/2222.webp",                       name_hira: "グッチ" },
         { name: "Tiffany",          url:"https://www.tiffany.co.jp/",       image: "./../public/1837-24601439_1063515_ED.webp",   name_hira: "ティファニー" }
     ]
 
