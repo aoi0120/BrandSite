@@ -1,6 +1,6 @@
 import { Header } from './components/header'
 import { Footer } from './Footer'
-import { useBrands } from './hook/useBrands'
+import { useBrands } from './hooks/useBrands'
 import { Modal } from "./components/Modal"
 import { useState } from 'react'
 
@@ -17,7 +17,7 @@ export const App = () => {
   return (
     <div className='bg-slate-300 overflow-hidden'>
       <Header />
-      <div className='z-30 top-0 relative w-screen h-screen bg-cover bg-center' style={{backgroundImage: 'url(./../public/mainBlack.png)'}}>
+      <div className='z-0 top-0 relative w-screen h-screen bg-cover bg-center' style={{backgroundImage: 'url(./../public/mainBlack.png)'}}>
       <h1 className='text-center absolute -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 text-[100px] text-white'>好きを見つけよう</h1>
       </div>
       <Modal showFlag={showModal} setShowModal={setShowModal} selectedBrandName={selectedBrand} />

@@ -1,4 +1,4 @@
-import { useBrands } from './../hook/useBrands'
+import { useBrands } from '../hooks/useBrands'
 
 interface ModalProps {
     showFlag: boolean,
@@ -26,7 +26,7 @@ export const Modal: React.FC<ModalProps> = ({ showFlag,setShowModal,selectedBran
     return (
         <>
             {showFlag ? ( //ture
-                <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-slate-800 bg-opacity-40" onClick={handleOutsideClick}>
+                <div className="z-10 fixed top-0 left-0 w-full h-full flex items-center justify-center bg-slate-800 bg-opacity-40" onClick={handleOutsideClick}>
                     <div className="bg-white p-10 rounded-md m-10">
                         <h2 className='text-lg fixed'>{brand.name}</h2>
                         <div className='w-auto h-auto'>
