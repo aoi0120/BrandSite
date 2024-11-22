@@ -2,7 +2,7 @@ import { Search } from "./Search";
 
 export const Header = () => {
     return (
-        <header className="flex w-100 h-100px bg-slate-600 items-center">
+        <header className="z-40 top-0 fixed flex w-full h-100px bg-slate-600 items-center">
             <h1 className="mr-auto text-white text-xl"><a className="p-6" href="/">ブランド収集</a></h1>
             <nav>
                 <ul>
