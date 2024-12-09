@@ -11,7 +11,7 @@ return (
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 5 }}
         >
-          <p className='text-center absolute -translate-y-1/2 left-[150px] top-[78%] text-[40px] text-neutral-200 bg-opacity-80 bg-slate-900 p-4 rounded-md'>FindYourLikeは、人気や広告に左右されず、自分らしいブランド品を見つけられます。<br />
+          <p className='text-center absolute -translate-y-1/2 left-[180px] top-[78%] text-[40px] text-neutral-200 bg-opacity-80 bg-slate-900 p-4 rounded-md'>このサイトは、人気や広告に左右されず、自分らしいブランド品を見つけられます。<br />
           新たなお気に入りを発見しよう！</p>
         </motion.div>
 
