@@ -28,19 +28,18 @@ const main = async () => {
     };
 
     const brandDates = [
-        { name: "Globe trotter",    url:"https://jp.globe-trotter.com/",    image: "./../public/globe.webp",                      name_hira: "グローブトロッター" },
-        { name: "Alden",            url:"https://www.aldenshop.com/",       image: "./../public/169115453.webp",                  name_hira: "オールデン" },
-        { name: "Gucci",            url:"https://www.gucci.com/jp/ja/",     image: "./../public/2222.webp",                       name_hira: "グッチ" },
-        { name: "Tiffany",          url:"https://www.tiffany.co.jp/",       image: "./../public/1837-24601439_1063515_ED.webp",   name_hira: "ティファニー" }
+        { name: "Globe trotter",    url:"https://jp.globe-trotter.com/",    image: "./../public/Globe-Trotter-Logo.jpg",                      name_hira: "グローブトロッター" },
+        { name: "Alden",            url:"https://www.aldenshop.com/",       image: "./../public/Alden.webp",                  name_hira: "オールデン" },
+        { name: "Gucci",            url:"https://www.gucci.com/jp/ja/",     image: "./../public/Gucci-Logo.jpg",                       name_hira: "グッチ" },
+        { name: "Tiffany",          url:"https://www.tiffany.co.jp/",       image: "./../public/Tiffany-Co-logo.jpg",   name_hira: "ティファニー" }
     ]
 
+    //create brand demo data *100
     for (const brandDate of brandDates) {
-        const item = await prisma.brand.findFirst({ where: { name: brandDate.name } })
-        if (item) { console.log(`${brandDate.name} already!`) }
-        else {
+        for(let i = 0; i < 5; i++){
             await prisma.brand.create({
                 data: {
-                    name: brandDate.name,
+                    name: `${brandDate.name}`,
                     photo_url: brandDate.image,
                     name_hira: brandDate.name_hira,
                     url: brandDate.url,
@@ -49,6 +48,23 @@ const main = async () => {
         }
 }
 }
+
+
+//     for (const brandDate of brandDates) {
+//         const item = await prisma.brand.findFirst({ where: { name: brandDate.name } })
+//         if (item) { console.log(`${brandDate.name} already!`) }
+//         else {
+//             await prisma.brand.create({
+//                 data: {
+//                     name: brandDate.name,
+//                     photo_url: brandDate.image,
+//                     name_hira: brandDate.name_hira,
+//                     url: brandDate.url,
+//                 }
+//             })
+//         }
+// }
+// }
 
 main() // Run the main function
     .catch(e => {

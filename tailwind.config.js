@@ -5,7 +5,11 @@ export default {
     './src/*.{html,js,jsx,ts,tsx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        Garamond: ['Cormorant Garamond', 'serif', ],
+      },
+    },
   },
   plugins: [],
 }

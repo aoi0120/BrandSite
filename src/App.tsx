@@ -3,6 +3,7 @@ import { Footer } from './Footer'
 import { useBrands } from './hooks/useBrands'
 import { Modal } from "./components/Modal"
 import { useState } from 'react'
+import { FastView } from './components/FastView'
 
 export const App = () => {
   const { brandDates } = useBrands();
@@ -17,9 +18,8 @@ export const App = () => {
   return (
     <div className='bg-slate-300 overflow-hidden'>
       <Header />
-      <div className='z-0 top-0 relative w-screen h-screen bg-cover bg-center' style={{backgroundImage: 'url(./../public/mainBlack.png)'}}>
-      <h1 className='text-center absolute -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 text-[100px] text-white'>好きを見つけよう</h1>
-      </div>
+      {/* メインビュー写真 */}
+      <FastView />
       <Modal showFlag={showModal} setShowModal={setShowModal} selectedBrandName={selectedBrand} />
       <div className='main center flex md:flex-row md:flex-wrap md:-mx-5 justify-center'>
         {brandDates.map((brand) => (
