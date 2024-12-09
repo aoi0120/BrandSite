@@ -26,13 +26,14 @@ export const Modal: React.FC<ModalProps> = ({ showFlag,setShowModal,selectedBran
     return (
         <>
             {showFlag ? ( //ture
-                <div className="z-10 fixed top-0 left-0 w-full h-full flex items-center justify-center bg-slate-800 bg-opacity-40" onClick={handleOutsideClick}>
-                    <div className="bg-white p-10 rounded-md m-10">
-                        <h2 className='text-lg fixed'>{brand.name}</h2>
-                        <div className='w-auto h-auto'>
-                            <img  src={brand.photo_url}></img>
+                <div className="z-50 fixed top-0 left-0 w-full h-full flex items-center justify-center bg-slate-800 bg-opacity-40" onClick={handleOutsideClick}>
+                    <div className="bg-white p-10 rounded-md mx-10 mt-7 w-full h-full">
+                        {/* <h2 className='text-lg fixed'>{brand.name}</h2> */}
+                        <div>
+                            
                         </div>
-                        <button onClick={closeModal}>Close</button>
+
+                        {/* <button onClick={closeModal}>Close</button> */}
                     </div>
                 </div>
             ) : ( //false
@@ -40,6 +41,4 @@ export const Modal: React.FC<ModalProps> = ({ showFlag,setShowModal,selectedBran
             )}
         </>
     )
-
-    
 }
