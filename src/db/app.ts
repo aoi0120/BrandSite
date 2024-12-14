@@ -25,4 +25,9 @@ app.get('/brands', async (req, res) => {
     res.json(brands);
 });
 
+app.get('/items', async (req, res) => {
+    const items = await prisma.item.findMany();
+    res.json(items);
+});
+
 export default app;

@@ -15,6 +15,7 @@ const FetchBrands = async () => {
 //brandDataをfetchBrands関数で取得する
 export const useBrands = () => {
     interface Brand {
+      id: number;
       photo_url: string;
       name: string;
       name_hira: string;
