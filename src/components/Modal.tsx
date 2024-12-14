@@ -33,7 +33,7 @@ export const Modal: React.FC<ModalProps> = ({ showFlag,setShowModal,selectedBran
                         {/* <h2 className='text-lg fixed'>{brand.name}</h2> */}
                         <div className='flex flex-wrap'>
                             {items.filter(item => item.brand_id === brand.id).map((item) => (
-                                <div key={item.id} className='w-1/4 p-2'>
+                                <div key={item.id} className='w-1/4 p-2 border-2 mx-2 mb-2'>
                                     <img className='w-full' src={item.photo_url} alt={item.name} />
                                     <div className=''>
                                         <h3>{item.name}</h3>

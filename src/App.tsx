@@ -16,7 +16,7 @@ export const App = () => {
   }
 
   return (
-    <div className='relative bg-slate-300 overflow-hidden'>
+    <div className='bg-slate-300 overflow-hidden'>
       <Header />
       {/* メインビュー写真 */}
       <FastView />
