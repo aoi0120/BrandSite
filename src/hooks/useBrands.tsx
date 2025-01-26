@@ -15,10 +15,10 @@ const FetchBrands = async () => {
 
 //brandDataをfetchBrands関数で取得する
 export const useBrands = () => {
-  
+
     const [brandData, setBrandData] = useState<Brand[]>([]);
     const [error, setError] = useState<string | null>(null);
-  
+
     useEffect(() => {
       const fetchBrands = async () => {
         try {
