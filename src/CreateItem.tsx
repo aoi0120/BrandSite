@@ -47,7 +47,7 @@ export const CreateItem = () => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form className="mt-56 ml-56" onSubmit={handleSubmit}>
             <TextInput
                 type="text"
                 label="Name"
