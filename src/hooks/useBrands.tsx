@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { Brand } from "../components/types";
 
 //fetchBrands関数を作成
 const FetchBrands = async () => {
@@ -14,22 +15,15 @@ const FetchBrands = async () => {
 
 //brandDataをfetchBrands関数で取得する
 export const useBrands = () => {
-    interface Brand {
-      id: number;
-      photo_url: string;
-      name: string;
-      name_hira: string;
-      url : string;
-    }
   
-    const [brandDates, setBrandDates] = useState<Brand[]>([]);
+    const [brandData, setBrandData] = useState<Brand[]>([]);
     const [error, setError] = useState<string | null>(null);
   
     useEffect(() => {
       const fetchBrands = async () => {
         try {
           const data = await FetchBrands();
-          setBrandDates(data);
+          setBrandData(data);
         } catch (error) {
           const err = error as Error;
           console.error(error);
@@ -38,5 +32,5 @@ export const useBrands = () => {
       };
       fetchBrands();
     }, []);
-    return { brandDates, error };
+    return { brandData, error };
   }

@@ -8,7 +8,7 @@ interface ModalProps {
 };
 
 export const Modal: React.FC<ModalProps> = ({ showFlag,setShowModal,selectedBrandName })=> {
-    const { brandDates } = useBrands();
+    const { brandData } = useBrands();
     const { items } = useItems();
     
     const closeModal = () => {
@@ -21,7 +21,7 @@ export const Modal: React.FC<ModalProps> = ({ showFlag,setShowModal,selectedBran
         }
     };
 
-    const brand = brandDates.find((data) => data.name === selectedBrandName)
+    const brand = brandData.find((data) => data.name === selectedBrandName)
 
     if(!showFlag || !selectedBrandName || !brand) return null;
 
