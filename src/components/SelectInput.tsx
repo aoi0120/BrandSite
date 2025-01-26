@@ -17,7 +17,7 @@ export const SelectInput = ({
 }: SelectInput) => {
     return(
         <div>
-            <label>{label}</label>
+            <label>{label}:</label>
             <select name={name} value={value} onChange={onChange} required>
                 {options.map((option) => (
                     <option value={option.id} key={option.id}>

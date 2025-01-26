@@ -2,6 +2,7 @@ import axios, { AxiosError } from "axios";
 import { useState } from "react"
 import { useBrands } from "./hooks/useBrands";
 import { SelectInput } from "./components/SelectInput";
+import { TextInput } from "./components/TextInput";
 
 export const CreateItem = () => {
     interface Item {
@@ -47,18 +48,24 @@ export const CreateItem = () => {
 
     return (
         <form onSubmit={handleSubmit}>
-            <div>
-                <label>Name:</label>
-                <input type="text" name="name" value={formData.name} onChange={handleChange} required></input>
-            </div>
+            <TextInput
+                type="text"
+                label="Name"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+            />
             <div>
                 <label>Description:</label>
                 <textarea name="description" value={formData.description} onChange={handleChange} required></textarea>
             </div>
-            <div>
-                <label>photo_url:</label>
-                <input type="text" name="photo_url" value={formData.photo_url} onChange={handleChange} required></input>
-            </div>
+            <TextInput
+                type="text"
+                label="photo_url"
+                name="photo_url"
+                value={formData.photo_url}
+                onChange={handleChange}
+            />
             <SelectInput
                 label="Brand"
                 name="Brand_id"
