@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { useState } from "react"
 import { useBrands } from "./hooks/useBrands";
 import { SelectInput } from "./components/SelectInput";
@@ -39,9 +39,9 @@ export const CreateItem = () => {
             alert('商品登録出来ました!');
             setFormData({ name: '', description: '', photo_url: '', brand_id: 0 })
             setErrorMessage(null);
-        } catch (error: any) {
-            setErrorMessage(error.response?.data?.message || '商品登録出来ません');
-            alert('商品登録出来ません');
+        } catch (error) {
+            const axiosError = error as AxiosError<{message: string}>;
+            setErrorMessage(axiosError.response?.data?.message || '商品登録出来ません');
         }
     }
 
@@ -65,6 +65,8 @@ export const CreateItem = () => {
                 value={formData.brand_id}
                 options={brandData}
                 onChange={handleChange} />
+
+            {errorMessage && <p style={{color: "red"}}>{errorMessage}</p>}
             <button type="submit">作成</button>
         </form>
     )
