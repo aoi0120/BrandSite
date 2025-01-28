@@ -68,7 +68,7 @@ export const CreateItem = () => {
             />
             <SelectInput
                 label="Brand"
-                name="Brand_id"
+                name="brand_id"
                 value={formData.brand_id}
                 options={brandData}
                 onChange={handleChange} />

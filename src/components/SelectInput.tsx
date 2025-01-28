@@ -1,6 +1,6 @@
 import { Brand } from "./types";
 
-interface SelectInput {
+interface SelectInputProps {
     label: string,
     name: string,
     value: number,
@@ -14,7 +14,7 @@ export const SelectInput = ({
     value,
     options,
     onChange,
-}: SelectInput) => {
+}: SelectInputProps) => {
     return(
         <div>
             <label>{label}:</label>
