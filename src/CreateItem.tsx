@@ -49,7 +49,7 @@ export const CreateItem = () => {
     return (
         <form className="mt-56 ml-56" onSubmit={handleSubmit}>
             <TextInput
-                type="text"
+                type="file"
                 label="Name"
                 name="name"
                 value={formData.name}
