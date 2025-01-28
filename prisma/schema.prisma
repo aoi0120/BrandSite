@@ -1,0 +1,83 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Brand {
+  description String?
+  photo_url   String?
+  created_at  DateTime   @default(now())
+  updated_at  DateTime   @updatedAt
+  name        String
+  name_hira   String?
+  url         String
+  id          Int        @id @default(autoincrement())
+  tags        BrandTag[]
+  items       Item[]
+  likes       Like[]
+}
+
+model Item {
+  id          Int       @id @default(autoincrement())
+  name        String
+  description String?
+  photo_url   String
+  created_at  DateTime  @default(now())
+  updated_at  DateTime  @updatedAt
+  link_url    String?   @map("url")
+  brand_id    Int
+  brand       Brand     @relation(fields: [brand_id], references: [id])
+  tags        ItemTag[]
+}
+
+model User {
+  name       String
+  email      String
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  id         Int      @id @default(autoincrement())
+  likes      Like[]
+}
+
+model Like {
+  id         String   @id @default(uuid())
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now())
+  user_id    Int
+  brand_id   Int
+  brand      Brand    @relation(fields: [brand_id], references: [id])
+  user       User     @relation(fields: [user_id], references: [id])
+
+  @@unique([user_id, brand_id])
+}
+
+model Tag {
+  id     String     @id @default(uuid())
+  name   String     @unique
+  brands BrandTag[]
+  items  ItemTag[]
+}
+
+model ItemTag {
+  item_id Int
+  tag_id  String
+  id      Int    @id @default(autoincrement())
+  item    Item   @relation(fields: [item_id], references: [id])
+  tag     Tag    @relation(fields: [tag_id], references: [id])
+
+  @@unique([item_id, tag_id])
+}
+
+model BrandTag {
+  tag_id   String
+  id       Int    @id @default(autoincrement())
+  brand_id Int
+  brand    Brand  @relation(fields: [brand_id], references: [id])
+  tag      Tag    @relation(fields: [tag_id], references: [id])
+
+  @@unique([brand_id, tag_id])
+}
