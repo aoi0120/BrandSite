@@ -4,9 +4,10 @@ import { useBrands } from './hooks/useBrands'
 import { Modal } from "./components/Modal"
 import { useState } from 'react'
 import { FastView } from './components/FastView'
+import { Brand } from './components/types'
 
 export const App = () => {
-  const { brandDates } = useBrands();
+  const { brandData } = useBrands();
   const [showModal, setShowModal] = useState<boolean>(false);
   const [selectedBrand, setSelectedBrand] = useState<string>('');
 
@@ -22,7 +23,7 @@ export const App = () => {
       <FastView />
       <Modal showFlag={showModal} setShowModal={setShowModal} selectedBrandName={selectedBrand} />
       <div className='main center flex md:flex-row md:flex-wrap md:-mx-5 justify-center'>
-        {brandDates.map((brand) => (
+        {brandData.map((brand: Brand) => (
           <button onClick={() => ShowModal(brand.name)} key={brand.name} className='contains md:w-1/3 md:px-5 xl:w-1/4 m-5 bg-white h-[300px] rounded-2xl'>
             <img className='block m-auto container object-center w-[250px] h-[250px]' src={brand.photo_url} alt={brand.name} />
             <h2 className='text-center flex column justify-center mt-[4px] text-lg'>{brand.name}({brand.name_hira})</h2>
