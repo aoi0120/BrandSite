@@ -49,7 +49,7 @@ export const CreateItem = () => {
     return (
         <form className="mt-56 ml-56" onSubmit={handleSubmit}>
             <TextInput
-                type="file"
+                type="text"
                 label="Name"
                 name="name"
                 value={formData.name}
@@ -60,7 +60,7 @@ export const CreateItem = () => {
                 <textarea name="description" value={formData.description} onChange={handleChange} required></textarea>
             </div>
             <TextInput
-                type="text"
+                type="file"
                 label="photo_url"
                 name="photo_url"
                 value={formData.photo_url}
