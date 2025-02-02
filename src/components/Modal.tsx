@@ -1,54 +1,52 @@
-import { useBrands } from '../hooks/useBrands'
-import { useItems } from '../hooks/useItems'
+import { useCallback, useEffect } from 'react';
+import { useBrands } from '../hooks/useBrands';
+import { useItems } from '../hooks/useItems';
+import { ProductGrid } from './ProductGrid';
+import { ModalProps } from './types';
 
-interface ModalProps {
-    showFlag: boolean,
-    setShowModal:(value:boolean) => void,
-    selectedBrandName: string
-};
+export const Modal: React.FC<ModalProps> = ({ showFlag, setShowModal, selectedBrandName }) => {
+    const { brandData = [] } = useBrands();
+    const { items = [] } = useItems();
 
-export const Modal: React.FC<ModalProps> = ({ showFlag,setShowModal,selectedBrandName })=> {
-    const { brandData } = useBrands();
-    const { items } = useItems();
-    
-    const closeModal = () => {
-        setShowModal(false);
-    };
-
-    const handleOutsideClick = (e: React.MouseEvent<HTMLDivElement>) => {
-        if (e.target === e.currentTarget) {
-            closeModal();
+    //モーダルが開いたときにスクロールを無効化
+    useEffect(() => {
+        if (showFlag) {
+            const scrollWidth = window.innerWidth - document.documentElement.clientWidth;
+            document.body.style.overflow = "hidden";
+            document.body.style.paddingRight = `${scrollWidth}px`
         }
-    };
+        return () => {
+            document.body.style.overflow = "auto";
+            document.body.style.paddingRight = "";
+        }
+    }, [showFlag])
 
+    //モーダル閉じる
+    const closeModal = useCallback(() => {
+        setShowModal(false);
+    }, [setShowModal]);
+
+    //モーダル外クリックで閉じる
+    const handleOutsideClick = useCallback(
+        (e: React.MouseEvent<HTMLDivElement>) => {
+            if (e.target === e.currentTarget) closeModal();
+        }, [closeModal]
+    );
+
+    //showFlagがfalseならreturn nullで返す
+    if (!showFlag) return null;
+
+    //ブランド情報取得
     const brand = brandData.find((data) => data.name === selectedBrandName)
 
-    if(!showFlag || !selectedBrandName || !brand) return null;
+    //存在しないブランドならモーダル表示しない
+    if (!selectedBrandName || !brand) return null;
 
     return (
-        <>
-            {showFlag ? ( //ture
-                <div className="z-50 fixed top-0 left-0 w-full h-full flex items-center justify-center bg-slate-800 bg-opacity-40" onClick={handleOutsideClick}>
-                    <div className="bg-white p-10 rounded-md mx-10 mt-7 w-full h-full">
-                        {/* <h2 className='text-lg fixed'>{brand.name}</h2> */}
-                        <div className='flex flex-wrap'>
-                            {items.filter(item => item.brand_id === brand.id).map((item) => (
-                                <div key={item.id} className='w-1/4 p-2 border-2 mx-2 mb-2'>
-                                    <img className='w-full' src={item.photo_url} alt={item.name} />
-                                    <div className=''>
-                                        <h3>{item.name}</h3>
-                                        <a href={item.link_url}>商品詳細</a>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-
-                        {/* <button onClick={closeModal}>Close</button> */}
-                    </div>
-                </div>
-            ) : ( //false
-                <></>
-            )}
-        </>
+        <div className="z-50 fixed top-0 left-0 w-full h-full flex items-center justify-center bg-slate-800 bg-opacity-40" onClick={handleOutsideClick}>
+            <div className="bg-white p-10 rounded-md mx-10 mt-7 w-full h-full overflow-scroll">
+                <ProductGrid items={items} brandId={brand.id} />
+            </div>
+        </div>
     )
 }
