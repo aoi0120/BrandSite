@@ -60,7 +60,7 @@ export const CreateItem = () => {
                 <textarea name="description" value={formData.description} onChange={handleChange} required></textarea>
             </div>
             <TextInput
-                type="file"
+                type="naem"
                 label="photo_url"
                 name="photo_url"
                 value={formData.photo_url}

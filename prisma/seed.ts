@@ -26,39 +26,48 @@ const main = async () => {
         console.log({ alice, bob });
     }
 
-    const brandDates = [
-        { name: "Globe trotter", url: "https://jp.globe-trotter.com/", image: "./../public/Globe-Trotter-Logo.jpg", name_hira: "グローブトロッター" },
-        { name: "Alden", url: "https://www.aldenshop.com/", image: "./../public/Alden.webp", name_hira: "オールデン" },
-        { name: "Gucci", url: "https://www.gucci.com/jp/ja/", image: "./../public/Gucci-Logo.jpg", name_hira: "グッチ" },
-        { name: "Tiffany", url: "https://www.tiffany.co.jp/", image: "./../public/Tiffany-Co-logo.jpg", name_hira: "ティファニー" }
-    ];
-
-    for (const brandDate of brandDates) {
-        await prisma.brand.create({
-            data: {
-                name: brandDate.name,
-                photo_url: brandDate.image,
-                name_hira: brandDate.name_hira,
-                url: brandDate.url,
-            }
-        });
+    const random = () => {
+        const randomNumber = Math.floor(Math.random() * 5);
+        return (randomNumber);
     }
+
+    // const brandDates = [
+    //     { name: "Globe trotter", url: "https://jp.globe-trotter.com/", image: "./../public/Globe-Trotter-Logo.jpg", name_hira: "グローブトロッター" },
+    //     { name: "Alden", url: "https://www.aldenshop.com/", image: "./../public/Alden.webp", name_hira: "オールデン" },
+    //     { name: "Gucci", url: "https://www.gucci.com/jp/ja/", image: "./../public/Gucci-Logo.jpg", name_hira: "グッチ" },
+    //     { name: "Tiffany", url: "https://www.tiffany.co.jp/", image: "./../public/Tiffany-Co-logo.jpg", name_hira: "ティファニー" }
+    // ];
+
+    // for (const brandDate of brandDates) {
+    //     await prisma.brand.create({
+    //         data: {
+    //             name: brandDate.name,
+    //             photo_url: brandDate.image,
+    //             name_hira: brandDate.name_hira,
+    //             url: brandDate.url,
+    //         }
+    //     });
+    // }
 
     const itemDates = [
-        { name: "bag", photo_url: "./../public/globe-bag.webp", brand_id: 1 },
-        { name: "shoes", photo_url: "./../public/alden-shoes.webp", brand_id: 2 }
+        { name: "bag", photo_url: "./../public/globe-bag.webp", brand_id: random() },
+        { name: "shoes", photo_url: "./../public/alden-shoes.webp", brand_id: random() },
+        { name: "jewelry", photo_url: "./../public/jewelry.webp", brand_id: random() },
+        { name: "earrings", photo_url: "./../public/earrings.webp", brand_id: random() },
+        { name: "necklace", photo_url: "./../public/necklace.webp", brand_id: random() },
     ];
-
-    for (const itemDate of itemDates) {
-        await prisma.item.create({
-            data: {
-                name: itemDate.name,
-                photo_url: itemDate.photo_url,
-                brand_id: itemDate.brand_id
-            }
-        });
-    }
-};
+    for (let i = 0; i < 10; i++) {
+        for (const itemDate of itemDates) {
+            await prisma.item.create({
+                data: {
+                    name: itemDate.name,
+                    photo_url: itemDate.photo_url,
+                    brand_id: itemDate.brand_id
+                }
+            });
+        }
+    };
+}
 
 main() // Run the main function
     .catch(e => {
