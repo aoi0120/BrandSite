@@ -1,12 +1,4 @@
-import { Brand } from "./types";
-
-interface SelectInputProps {
-    label: string,
-    name: string,
-    value: number,
-    options: Brand[],
-    onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
-}
+import { SelectInputProps } from "./types";
 
 export const SelectInput = ({
     label,

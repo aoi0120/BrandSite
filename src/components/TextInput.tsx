@@ -1,10 +1,4 @@
-interface TextInput {
-    type: string,
-    label: string,
-    name: string,
-    value: string,
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-}
+import { TextInputProps } from "./types"
 
 export const TextInput = ({
     type,
@@ -12,7 +6,7 @@ export const TextInput = ({
     name,
     value,
     onChange,
-}: TextInput) => {
+}: TextInputProps) => {
     return(
         <div>
             <label>{label}:</label>

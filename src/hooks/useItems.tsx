@@ -1,17 +1,11 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Product } from "../components/types";
 
 
 export const useItems = () => {
-    interface Item {
-        id: number;
-        name: string;
-        brand_id: number;
-        photo_url: string;
-        link_url: string;
-    }
 
-    const [items, setItems] = useState<Item[]>([]);
+    const [items, setItems] = useState<Product[]>([]);
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {

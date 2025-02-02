@@ -3,16 +3,11 @@ import { useState } from "react"
 import { useBrands } from "./hooks/useBrands";
 import { SelectInput } from "./components/SelectInput";
 import { TextInput } from "./components/TextInput";
+import { Product } from "./components/types";
 
 export const CreateItem = () => {
-    interface Item {
-        name: string;
-        description: string;
-        photo_url: string;
-        brand_id: number;
-    }
 
-    const [formData, setFormData] = useState<Item>({
+    const [formData, setFormData] = useState<Product>({
         name: '',
         description: '',
         photo_url: '',
@@ -30,7 +25,7 @@ export const CreateItem = () => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        const data: Item = {
+        const data: Product = {
             ...formData,
             brand_id: Number(formData.brand_id),
         }
