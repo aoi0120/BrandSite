@@ -12,7 +12,7 @@ export const Header = () => {
                 <ul>
                     <li className="inline-block"><Search /></li>
                     <li className="none inline-block ml-5 text-white"><a className="p-6" href="/">ホーム</a></li>
-                    <li className="none inline-block p-6 text-white"><a className="p-6" href="/">コンタクト</a></li>
+                    <li className="none inline-block p-6 text-white"><a className="p-6" href="/ProductRandom">ランダム</a></li>
                     <li className="none inline-block p-6 text-white"><a className="p-6" href="/">ログイン</a></li>
                 </ul>
             </nav>

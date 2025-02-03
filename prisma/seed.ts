@@ -3,6 +3,7 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 const main = async () => {
+
     const alice = await prisma.user.findFirst({ where: { name: 'Alice' } });
     if (alice) { console.log('Alice already!'); }
     else {
@@ -26,9 +27,19 @@ const main = async () => {
         console.log({ alice, bob });
     }
 
+    const brands = await prisma.brand.findMany({
+        select: {id:true}
+    })
+
+    if(brands.length === 0) {
+        console.error("Error: Is not Table Data")
+        return;
+    }
+    
+    const brandIds = brands.map(brand => brand.id)
+
     const random = () => {
-        const randomNumber = Math.floor(Math.random() * 5);
-        return (randomNumber);
+        return brandIds[Math.floor(Math.random() * brandIds.length)]
     }
 
     // const brandDates = [
@@ -56,13 +67,14 @@ const main = async () => {
         { name: "earrings", photo_url: "./../public/earrings.webp", brand_id: random() },
         { name: "necklace", photo_url: "./../public/necklace.webp", brand_id: random() },
     ];
+
     for (let i = 0; i < 10; i++) {
         for (const itemDate of itemDates) {
             await prisma.item.create({
                 data: {
                     name: itemDate.name,
                     photo_url: itemDate.photo_url,
-                    brand_id: itemDate.brand_id
+                    brand_id: random()
                 }
             });
         }
