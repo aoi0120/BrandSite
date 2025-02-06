@@ -18,6 +18,7 @@ export interface Product {
         photo_url: string;
         link_url?: string;
         brand_id: number;
+        tags?: string[];
 }
 
 export interface ProductCardProps {

@@ -74,7 +74,8 @@ const main = async () => {
                 data: {
                     name: itemDate.name,
                     photo_url: itemDate.photo_url,
-                    brand_id: random()
+                    brand_id: random(),
+                    // tags?: [1,2,3]
                 }
             });
         }
