@@ -6,6 +6,23 @@ export interface Brand {
         url: string;
 }
 
+export interface Tag {
+        id: number;
+        name: string;
+        brands: BrandTag[];
+        items: ItemTag[];
+}
+
+export interface BrandTag {
+        tag_id: number;
+        brand_id: number;
+}
+
+export interface ItemTag {
+        tag_id: number;
+        item_id: number;
+}
+
 export interface ProductGridProps {
         items: Product[];
         brandId: number;
@@ -18,7 +35,7 @@ export interface Product {
         photo_url: string;
         link_url?: string;
         brand_id: number;
-        tags?: string[];
+        tags?: string[] | string;
 }
 
 export interface ProductCardProps {
@@ -34,8 +51,8 @@ export interface ModalProps {
 export interface SelectInputProps {
         label: string,
         name: string,
-        value: number,
-        options: Brand[],
+        value: number | string[] | undefined,
+        options: Brand[] | Tag[],
         onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 

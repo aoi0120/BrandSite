@@ -1,6 +1,7 @@
 import axios, { AxiosError } from "axios";
 import { useState } from "react"
 import { useBrands } from "./hooks/useBrands";
+import { useTags } from "./hooks/useTags";
 import { SelectInput } from "./components/SelectInput";
 import { TextInput } from "./components/TextInput";
 import { Product } from "./components/types";
@@ -12,14 +13,23 @@ export const CreateItem = () => {
         description: '',
         photo_url: '',
         brand_id: 1,
+        tags: [] as string[]
     })
 
     const [errorMessage,setErrorMessage] = useState<string | null>(null);
 
     const { brandData } = useBrands();
+    const { tagData } = useTags();
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value })
+        const { name, value } = e.target;
+        if (name === "tags") {
+            if (e.target instanceof HTMLSelectElement) {
+                setFormData({ ...formData, [name]: Array.from(e.target.selectedOptions, option => option.value) });
+            }
+        } else {
+            setFormData({ ...formData, [name]: value });
+        }
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -33,7 +43,7 @@ export const CreateItem = () => {
         try {
             await axios.post('http://localhost:3100/api/items', data)
             alert('商品登録出来ました!');
-            setFormData({ name: '', description: '', photo_url: '', brand_id: 0 })
+            setFormData({ name: '', description: '', photo_url: '', brand_id: 0, tags: [] })
             setErrorMessage(null);
         } catch (error) {
             const axiosError = error as AxiosError<{message: string}>;
@@ -55,7 +65,7 @@ export const CreateItem = () => {
                 <textarea name="description" value={formData.description} onChange={handleChange} required></textarea>
             </div>
             <TextInput
-                type="naem"
+                type="file"
                 label="photo_url"
                 name="photo_url"
                 value={formData.photo_url}
@@ -67,6 +77,14 @@ export const CreateItem = () => {
                 value={formData.brand_id}
                 options={brandData}
                 onChange={handleChange} />
+
+            <SelectInput
+                label="tags"
+                name="tags"
+                value={formData.tags as string[]}
+                options={tagData}
+                onChange={handleChange}
+            />
 
             {errorMessage && <p style={{color: "red"}}>{errorMessage}</p>}
             <button type="submit">作成</button>

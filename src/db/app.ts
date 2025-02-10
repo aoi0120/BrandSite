@@ -31,6 +31,11 @@ app.get('/items', async (req: Request, res: Response) => {
     res.json(items);
 });
 
+app.get('/tags', async (req: Request, res: Response) => {
+    const tags = await prisma.tag.findMany();
+    res.json(tags)
+})
+
 app.post('/api/items', async (req: Request, res: Response) => {
     const { name, description, photo_url, tags, brand_id } = req.body;
 
@@ -44,7 +49,7 @@ app.post('/api/items', async (req: Request, res: Response) => {
                     connect: { id: brand_id }
                 },
                 tags: {
-                    create: (tags as string[]).map((tagId: string) => ({
+                    create: (tags as number[]).map((tagId: number) => ({
                         tag: { connect: { id: tagId } }
                     }))
                 }

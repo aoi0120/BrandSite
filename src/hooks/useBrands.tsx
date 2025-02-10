@@ -11,11 +11,10 @@ const FetchBrands = async () => {
       console.error(error);
       throw error;
     }
-  }
+}
 
 //brandDataをfetchBrands関数で取得する
 export const useBrands = () => {
-
     const [brandData, setBrandData] = useState<Brand[]>([]);
     const [error, setError] = useState<string | null>(null);
 
@@ -33,4 +32,4 @@ export const useBrands = () => {
       fetchBrands();
     }, []);
     return { brandData, error };
-  }
+}

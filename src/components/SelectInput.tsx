@@ -10,7 +10,7 @@ export const SelectInput = ({
     return(
         <div>
             <label>{label}:</label>
-            <select name={name} value={value} onChange={onChange} required>
+            <select name={name} value={value} onChange={onChange}>
                 {options.map((option) => (
                     <option value={option.id} key={option.id}>
                         {option.name}
